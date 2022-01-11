@@ -143,4 +143,64 @@ public class MemoRepositoryTests {
     public void testDeleteQueryMethods() {
         memoRepository.deleteMemoByMnoLessThan(10L);
     }
+
+    @Test
+    public void testQueryAnnotationSelectDesc() {
+        List<Memo> listDesc = memoRepository.getListDesc();
+
+        listDesc.forEach(System.out::println);
+    }
+
+    @Test
+    public void testQueryAnnotationUpdateParamBinding1() {
+        int ret = memoRepository.updateMemoText(98L, "updated ");
+
+        System.out.println(ret);
+    }
+
+    @Test
+    public void testQueryAnnotationUpdateParamBinding2() {
+        if(memoRepository.findById(98L).isEmpty())
+            return;
+        Memo memo = memoRepository.findById(98L).get();
+
+        int ret = memoRepository.updateMemoText(memo);
+        System.out.println(ret);
+    }
+
+    @Test
+    public void testQueryAnnotationPageable() {
+        Sort sort = Sort.by("mno").descending();
+        PageRequest pageable = PageRequest.of(0, 10, sort);
+
+        Page<Memo> list = memoRepository.getListWithQuery(90L, pageable);
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testQueryAnnotationObjectArray() {
+        Sort sort = Sort.by("mno").descending();
+
+        PageRequest pageable = PageRequest.of(0, 10, sort);
+
+        Page<Object[]> list = memoRepository.getListWithQueryObject(90L, pageable);
+
+        list.forEach(result ->{
+            Object mno = result[0];
+            Object memoText = result[1];
+            Object CURRENT_TIME = result[2];
+            System.out.println(mno + " " + memoText + " " + CURRENT_TIME);
+        });
+    }
+
+    @Test
+    public void testQueryAnnotationNativeQuery() {
+        List<Object[]> list = memoRepository.getNativeResult();
+
+        list.forEach(result -> {
+            Object mno = result[0];
+            Object memoText = result[1];
+            System.out.println(mno + " " + memoText);
+        });
+    }
 }
