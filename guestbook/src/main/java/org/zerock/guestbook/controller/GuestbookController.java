@@ -32,4 +32,21 @@ public class GuestbookController {
 
         model.addAttribute("result", service.getList(pageRequestDTO));
     }
+
+    @GetMapping("/register")
+    public void register(){
+        log.info("register get...");
+    }
+
+    @PostMapping("/register")
+    public String registerPost(GuestbookDTO dto, RedirectAttributes redirectAttributes){
+
+        log.info("dto..." + dto);
+
+        Long gno = service.register(dto);
+
+        redirectAttributes.addFlashAttribute("msg", gno);
+
+        return "redirect:/guestbook/list";
+    }
 }
