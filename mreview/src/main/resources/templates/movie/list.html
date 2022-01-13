@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+        <h1 class="mt-4">Movie List Page
+            <span>
+          <a th:href="@{/movie/register}">
+              <button type="button" class="btn btn-outline-primary">REGISTER</button>
+          </a>
+      </span>
+        </h1>
+
+        <form action="/movie/list" method="get" id="searchForm">
+            <input type="hidden" name="page" value="1">
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title & Picture</th>
+                <th scope="col">Review Count</th>
+                <th scope="col">AVG Rating</th>
+                <th scope="col">Regdate</th>
+            </tr>
+            </thead>
+            <tbody>
+
+        </table>
+        <script th:inline="javascript">
+        </script>
+
+    </th:block>
+
+</th:block>
