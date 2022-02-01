@@ -29,14 +29,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.logout();
     }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-
-        //사용자 계정은 user1
-        auth.inMemoryAuthentication().withUser("user1")
-                .password("$2a$10$fYwaQUpUft4LmNL8cJ1HIue.T6eqas1hotzHaNNwN9EoR2s7r/Z2G")
-                .roles("USER");
-    }
-
 }
