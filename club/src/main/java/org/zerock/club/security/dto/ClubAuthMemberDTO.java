@@ -29,6 +29,9 @@ public class ClubAuthMemberDTO extends User implements OAuth2User {
 
     public ClubAuthMemberDTO(String username, String password , boolean fromSocial, Collection<? extends GrantedAuthority> authorities, Map<String, Object> attr) {
         super(username, password, authorities);
+        this.email = username;
+        this.fromSocial = fromSocial;
+        this.password = password;
         this.attr = attr;
     }
 
