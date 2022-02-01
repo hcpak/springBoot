@@ -26,15 +26,4 @@ public class ClubAuthMemberDTO extends User {
         this.email = username;
         this.fromSocial = fromSocial;
     }
-
-    public ClubAuthMemberDTO(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities, String email, String name, boolean fromSocial) {
-        super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-        this.email = email;
-        this.name = name;
-        this.fromSocial = fromSocial;
-    }
-
-    public ClubAuthMemberDTO(String username, String password, Collection<? extends GrantedAuthority> authorities){
-        super(username, password, authorities);
-    }
 }
